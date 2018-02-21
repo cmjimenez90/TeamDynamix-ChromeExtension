@@ -1,0 +1,19 @@
+{
+    "manifest_version": 2,
+    "name": "TeamDynamix Extension",
+    "version": "0.1",
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+      },
+    "page_action": {
+        "default_icon":"TDIcon_1919.png",
+        "default_popup": "popup.html"
+    },
+    "permissions":[
+        "activeTab",
+        "declarativeContent",
+        "storage"
+    ]
+}
