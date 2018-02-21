@@ -1,7 +1,13 @@
+    chrome.alarms.onAlarm.addListener(function(alarm){
+        if(alarm.name == "tdRefreshAlarm"){
+          console.log("alarm triggered");
+          alert("alarm triggered");
+          console.log("refresh button clicked");
+        }
+    });
+  
   chrome.runtime.onInstalled.addListener(function() {
-    // Replace all rules ...
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
-      // With a new rule ...
       chrome.declarativeContent.onPageChanged.addRules([
         {
           conditions: [
