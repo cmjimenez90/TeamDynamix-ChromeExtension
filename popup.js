@@ -20,13 +20,31 @@ function alarmModification(value){
     
 };
 
+function loadConfiguration(selector){
+    chrome.storage.sync.get('selected',function(selected){
+        if(selected.selected){
+            for(var option, current = 0; option = selector.options[current]; current++) {
+                if(option.value == selected.selected) {
+                    selector.selectedIndex = current;
+                    break;
+                }
+            }
+        }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+    
     var selector = document.getElementById('interval-select');
-    console.log(selector);
+ 
+    loadConfiguration(selector);
 
     selector.addEventListener('change', function(){
         console.log("selector changed");
         alarmModification(parseInt(selector.value));
+        chrome.storage.sync.set({'selected' : selector.value});
     })
   });
+
+
 
