@@ -1,7 +1,11 @@
   chrome.alarms.onAlarm.addListener(function(alarm){
       if(alarm.name == "tdRefreshAlarm"){
         console.log("alarm triggered");
-        console.log("refresh button clicked");
+        chrome.tabs.query({active: true}, function(tabs){
+          console.log(tabs[0]);
+          chrome.tabs.sendMessage(tabs[0].id,{action: "refreshTickets"});
+          console.log("message sent");
+        });
       }
   });
 
