@@ -18,7 +18,7 @@ function alarmModification(value){
     }
     
 };
-
+//Resets alarm if not available based on previous state.
 function loadConfiguration(selector){
     chrome.storage.sync.get('selected',function(selected){
         if(selected.selected){
@@ -41,7 +41,7 @@ function loadConfiguration(selector){
         }
     });
 }
-
+//Runs whenever the extension Page action is opened.
 document.addEventListener("DOMContentLoaded", function() {
     
     var selector = document.getElementById('interval-select');

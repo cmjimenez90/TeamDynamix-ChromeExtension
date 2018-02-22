@@ -1,5 +1,5 @@
 console.log("tdtickets_cs.js is running");
-
+//waits for refreshTickets message, if received processes refresh.
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     console.log("message recieved");
     if(request.action == "refreshTickets"){
