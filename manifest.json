@@ -6,18 +6,16 @@
     "background": {
         "scripts": ["background.js"],
         "persistent": false
-      },
+    },
 
     "page_action": {
         "default_icon":"TDIcon_1919.png",
         "default_popup": "popup.html"
     },
-    "content_scripts": [
-    {
+    "content_scripts": [{
       "matches": ["https://rcgc.teamdynamix.com/*","https://rcgc.teamdynamix.com/TDNext/Home/Desktop/Default.aspx"],
       "js": ["tdtickets_cs.js"]
-    }
-  ],
+    }],
     "permissions":[
         "tabs",
         "declarativeContent",
