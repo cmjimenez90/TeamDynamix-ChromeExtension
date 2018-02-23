@@ -4,21 +4,22 @@ console.log("tdtickets_cs.js is running");
 *Detects the selected tab on the main document page. Looks for Ticket tab, if not selected action ends.
 *If ticket tab is selected, refreshes tickets based on view. Refresh logic is different if the Desktop view is active.
 *WARNING: Potentially very volatile. 
-*Since it relies on the current design of the TeamDynamix webpage, updates applied by the TeamDynamix team can potentially break this plug in.
+*Since it relies on the current design of the TeamDynamix webpage, updates applied by the TeamDynamix team
+* can potentially break this plug in.
 ********************************************************************************************************************/
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     console.log("message recieved");
     if(request.action == "refreshTickets"){
         if(shouldProcessRequest()){
             console.log("valid tab selected: performing refreshTicketsAction");
-            var iframeDoc = document.getElementsByTagName("iframe")[0].contentWindow.document;
-            var rightIframeDoc = iframeDoc.getElementById("RightFrame").contentWindow.document;
-            console.log(iframeDoc);
-            console.log(rightIframeDoc);
+            var iframeDocument = document.getElementsByTagName("iframe")[0].contentWindow.document;
+            var rightIframeDocument = iframeDocument.getElementById("RightFrame").contentWindow.document;
+            console.log(iframeDocument);
+            console.log(rightIframeDocument);
             //Process desktop view logic
-            if(getSelectedNavItem(iframeDoc) == "divDesktopHdr"){
+            if(getSelectedNavItem(iframeDocument) == "divDesktopHdr"){
                 console.log("Desktop view is selected; getting refresh links");
-                var refreshLinks = rightIframeDoc.getElementsByClassName("fa-refresh");
+                var refreshLinks = rightIframeDocument.getElementsByClassName("fa-refresh");
                 console.log(refreshLinks);
                 for (let link of refreshLinks){
                     console.log("calling onClick on "+link);
@@ -28,7 +29,7 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
             }
             //Process any other view
             else{
-                var refreshButton = rightIframeDoc.getElementById("btnRefresh");
+                var refreshButton = rightIframeDocument.getElementById("btnRefresh");
                 console.log(refreshButton);
                 refreshButton.click();
                 console.log("refresh button clicked");
