@@ -43,11 +43,8 @@ function loadConfiguration(selector){
 }
 //Runs whenever the extension Page action is opened.
 document.addEventListener("DOMContentLoaded", function() {
-    
     var selector = document.getElementById('interval-select');
- 
     loadConfiguration(selector);
-
     selector.addEventListener('change', function(){
         console.log("selector changed");
         alarmModification(parseInt(selector.value));
