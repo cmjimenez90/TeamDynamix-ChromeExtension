@@ -1,16 +1,23 @@
-TeamDyanmix Extension for Google Chrome
+#TeamDyanmix Extension for Google Chrome
 
-Purpose:
-Will allow chrome to automatically refresh the ticket queue when on your teamdynamix page.
+###Purpose:
+Automattically refreshes the user's ticket queue. Can refresh both the desktop view and global ticket views.
+* Desktop
+* Tickets
+    1. Assigned To Me
+    2. Awaiting My Review
+    3. Awaiting My Approval
+    4. Incidents
+    5. Problems
+    6. Changes
+    7. Super Tickets
+    8. Service Request
+### Page Action Activates when the following are met:
+1. URL: https://rcgc.teamdynamix.com/TDNext/Home/Desktop/Default.aspx
+2. Selected tab is Ticket
+3. Detects refresh link or refresh button on page
 
-Activates when the following are met:
-URL: https://rcgc.teamdynamix.com/TDNext/Home/Desktop/Default.aspx
-Activates when the following is visible on the DOM: table with ID "grdTickets"
-Simulates presses on button "btnRefresh"
-
-Will click the refresh button at the desired time interval, on any ticket page as of this time.
-
-PERMISSIONS:
+##PERMISSIONS:
 Tabs: Prompts for read browsing history. Is not utilized.
 Modify "RCGC.TEAMDYNAMIX.COM": for clicking of the button and reading the DOM.
 
