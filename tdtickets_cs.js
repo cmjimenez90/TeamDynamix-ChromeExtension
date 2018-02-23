@@ -25,23 +25,11 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
             var rightIframeDocument = iframeDocument.getElementById(RIGHTIFRAME_TAG_NAME).contentWindow.document;
             console.log(iframeDocument);
             console.log(rightIframeDocument);
-            //Process desktop view logic
             if(getSelectedNavItem(iframeDocument) == DESKTOP_NAV_ID){
-                console.log("Desktop view is selected; getting refresh links");
-                var refreshLinks = rightIframeDocument.getElementsByClassName(REFRESH_ICON_CLASS);
-                console.log(refreshLinks);
-                for (let link of refreshLinks){
-                    console.log("calling onClick on "+link);
-                    link.click();
-                    console.log("success");
-               }
+                refreshDesktopView(rightIframeDocument);
             }
-            //Process any other view
             else{
-                var refreshButton = rightIframeDocument.getElementById(REFRESH_BUTTON_ID);
-                console.log(refreshButton);
-                refreshButton.click();
-                console.log("refresh button clicked");
+                clickRefreshButton(rightIframeDocument);
             }  
         }      
     } 
@@ -53,5 +41,25 @@ function shouldProcessRequest(){
 
 function getSelectedNavItem(iframe){
     return iframe.getElementsByClassName(SELECT_CLASS)[0].getAttribute("id");
+}
+
+function clickRefreshButton(iframe){
+    var refreshButton = iframe.getElementById(REFRESH_BUTTON_ID);
+    console.log(refreshButton);
+    if(refreshButton){
+        refreshButton.click();
+        console.log("refresh button clicked");
+    }   
+} 
+
+function refreshDesktopView(iframe){
+    console.log("Desktop view is selected; getting refresh links");
+    var refreshLinks = iframe.getElementsByClassName(REFRESH_ICON_CLASS);
+    console.log(refreshLinks);
+    for (let link of refreshLinks){
+        console.log("calling onClick on "+link);
+        link.click();
+        console.log("success");
+    }
 }
 
