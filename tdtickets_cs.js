@@ -1,3 +1,12 @@
+const REFRESH_ACTION = "refreshTickets";
+const IFRAME_TAG_NAME = "iframe";
+const RIGHTIFRAME_TAG_NAME = "RightFrame";
+const DESKTOP_NAV_ID = "divDesktopHdr";
+const REFRESH_ICON_CLASS = "fa-refresh";
+const REFRESH_BUTTON_ID = "btnRefresh";
+const ACTIVE_UI_CLASS = "ui-state-active";
+const SELECT_CLASS = "selected";
+
 console.log("tdtickets_cs.js is running");
 /* ******************************************************************************************************************
 *Waits for refreshTickets message, if received processes refresh under the following critia.
@@ -9,17 +18,17 @@ console.log("tdtickets_cs.js is running");
 ********************************************************************************************************************/
 chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     console.log("message recieved");
-    if(request.action == "refreshTickets"){
+    if(request.action == REFRESH_ACTION){
         if(shouldProcessRequest()){
             console.log("valid tab selected: performing refreshTicketsAction");
-            var iframeDocument = document.getElementsByTagName("iframe")[0].contentWindow.document;
-            var rightIframeDocument = iframeDocument.getElementById("RightFrame").contentWindow.document;
+            var iframeDocument = document.getElementsByTagName(IFRAME_TAG_NAME)[0].contentWindow.document;
+            var rightIframeDocument = iframeDocument.getElementById(RIGHTIFRAME_TAG_NAME).contentWindow.document;
             console.log(iframeDocument);
             console.log(rightIframeDocument);
             //Process desktop view logic
-            if(getSelectedNavItem(iframeDocument) == "divDesktopHdr"){
+            if(getSelectedNavItem(iframeDocument) == DESKTOP_NAV_ID){
                 console.log("Desktop view is selected; getting refresh links");
-                var refreshLinks = rightIframeDocument.getElementsByClassName("fa-refresh");
+                var refreshLinks = rightIframeDocument.getElementsByClassName(REFRESH_ICON_CLASS);
                 console.log(refreshLinks);
                 for (let link of refreshLinks){
                     console.log("calling onClick on "+link);
@@ -29,7 +38,7 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
             }
             //Process any other view
             else{
-                var refreshButton = rightIframeDocument.getElementById("btnRefresh");
+                var refreshButton = rightIframeDocument.getElementById(REFRESH_BUTTON_ID);
                 console.log(refreshButton);
                 refreshButton.click();
                 console.log("refresh button clicked");
@@ -39,10 +48,10 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
 });
 
 function shouldProcessRequest(){
-    return (document.getElementsByClassName("ui-state-active")[0].getAttribute("tabindex") == "0") ? true : false;
+    return (document.getElementsByClassName(ACTIVE_UI_CLASS)[0].getAttribute("tabindex") == "0") ? true : false;
 }
 
 function getSelectedNavItem(iframe){
-    return iframe.getElementsByClassName("selected")[0].getAttribute("id");
+    return iframe.getElementsByClassName(SELECT_CLASS)[0].getAttribute("id");
 }
 
