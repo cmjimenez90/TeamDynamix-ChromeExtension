@@ -1,18 +1,26 @@
+
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>TD AutoRefresh</title>
         <script src='popup.js'></script>
+        <link rel="stylesheet" href="css/popup.css">
     </head>
     <body>
         <div class='grid-container'>
-            <H2>TeamDynamix Ticket Queue Refresh</H2>
+            <div class="banner">
+                <H1>Queue Refresh Interval</H1>
+            </div>
             <div id='intervals'>
+                <p>Please select a refresh interval</p>
                 <select id='interval-select'>
-                    <option value=0>Off</option>
-                    <option value=-1>test 30 seconds</option>
-                    <option value=1>1 minute</option>
-                    <option value=2>2 minutes</option>
-                    <option value=5>5 minutes</option>
+                    <optgroup>
+                        <option value=0>Off</option>
+                        <option value=-1>test 30 seconds</option>
+                        <option value=1>1 minute</option>
+                        <option value=2>2 minutes</option>
+                        <option value=5>5 minutes</option>
+                    </optgroup>
                 </select>
             </div>
         </div>

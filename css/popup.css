@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    color: #6288af;
+}
+.grid-container{
+    display: grid;
+    min-width: 300px;
+    width: 100%;
+    grid-row-gap: 0px; 
+}
+
+.banner {
+    background-color: #3055a2;
+    text-align: center;
+    color: #c6ced8;
+}
+
+.banner h2 {
+    font-size: 1.5em;
+}
+
+#intervals{
+    text-align: center;
+    font-size: 1.2em;
+}
+
+#interval-select{
+    margin-bottom: 5px;
+    border-style: none;
+    text-align-last: center;
+    font-size: 1.3em;
+    background-color: #3055a2;
+    color: #c6ced8;
+}
+
+optgroup{
+    text-align: center;    
+}
