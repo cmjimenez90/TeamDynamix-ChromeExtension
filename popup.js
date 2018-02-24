@@ -11,15 +11,9 @@ function alarmModification(value){
     chrome.alarms.clear(alarmName);
     console.log("alarm cleared");
     if(value){
-        if(value !== -1){
             console.log("creating alarm");
             chrome.alarms.create(alarmName,{periodInMinutes : value});
-            console.log("alarm created");
-        }else{
-            console.log("creating test alarm");
-            chrome.alarms.create(alarmName,{periodInMinutes : .5});
-            console.log("alarm test created");
-        }   
+            console.log("alarm created");  
     }  
 };
 //Resets alarm if not available based on previous state.
