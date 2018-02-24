@@ -9,7 +9,7 @@
     },
 
     "page_action": {
-        "default_icon":"TDIcon_1919.png",
+        "default_icon":"icon/TDIcon_1919.png",
         "default_popup": "popup.html"
     },
     "content_scripts": [{
