@@ -1,4 +1,6 @@
 #TeamDyanmix Extension for Google Chrome
+##Version 0.9.0
+all features implemented for testing. Bug phase catching and design issues before official version 1 release.
 
 ###Purpose:
 Automattically refreshes the user's ticket queue. Can refresh both the desktop view and global ticket views.
