@@ -7,39 +7,42 @@ const ICON_5MIN = 'icon/TDIcon_5min_1919.png';
 function alarmModification(value){
     console.log(value);
     var alarmName = "tdRefreshAlarm";
-    console.log("clearing alarm");
+    console.log("Alarm Modification: clearing alarm");
     chrome.alarms.clear(alarmName);
-    console.log("alarm cleared");
+    console.log("Alarm Modification: alarm cleared");
     if(value){
-            console.log("creating alarm");
+            console.log("Alarm Modification: creating alarm");
             chrome.alarms.create(alarmName,{periodInMinutes : value});
-            console.log("alarm created");  
+            console.log("Alarm Modification: alarm created");  
     }  
 };
 //Resets alarm if not available based on previous state.
 function loadConfiguration(selector){
     chrome.storage.sync.get('selected',function(selected){
         if(selected.selected){
-            console.log("persistence found");
+            console.log("Load Configuration: persistence found");
             for(var option, current = 0; option = selector.options[current]; current++) {
                 if(option.value == selected.selected) {
-                    console.log("setting choice to value: "+ selector.value);
+                    console.log("Load Configuration: setting choice to value: "+ selector.value);
                     selector.selectedIndex = current;
                     break;
                 }
             }
-            console.log("looking for active alarm");
+            console.log("Load Configuration: looking for active alarm");
             chrome.alarms.get('tdRefreshAlarm',function (alarm) {
                 if(!alarm){
-                    console.log("no alarm found, creating alarm based on persistence.");
+                    console.log("Load Configuration: no alarm found, creating alarm based on persistence.");
                     alarmModification(parseInt(selected));
-                    console.log("loadconfiguration complete: alarm created.");
+                    console.log("Load Configuration: alarm created.");
                 }
             });
-            setIconToCurrentState(selected.selected);
+            console.log("Load Configuration: loading icon state");
+            setIconToCurrentState(parseInt(selector.value));
+            console.log("Load Configuration: icon state loaded");      
         }
     });
 }
+
 function setIconToCurrentState(value){
     function setIcon(tab,value){
         switch(value){
@@ -59,19 +62,23 @@ function setIconToCurrentState(value){
                 chrome.pageAction.setIcon({tabId: tab.id,path: ICON_OFF});
         }
     }
-    chrome.tabs.query({active: true}, function(tabs){
-        console.log("changing Icon to match selector");
-        setIcon(tabs[0],parseInt(value));
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        console.log("Set Icon State: changing Icon to match selector");
+        setIcon(tabs[0],value);
     });   
 }
+
 //Runs whenever the extension Page action is opened.
 document.addEventListener("DOMContentLoaded", function() {
     var selector = document.getElementById('interval-select');
     loadConfiguration(selector);
     selector.addEventListener('change', function(){
-        console.log("selector changed");
+        console.log("Selector Changed Event: selector changed");
+        console.log("Selector Changed Event: changing alarm");
         alarmModification(parseInt(selector.value));
-        setIconToCurrentState(selector.value);
+        console.log("Selector Changed Event: chaning icon");
+        setIconToCurrentState(parseInt(selector.value));
+        console.log("Selector Changed Event: storing selector value");
         chrome.storage.sync.set({'selected' : selector.value});
     });
   });
