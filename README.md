@@ -1,8 +1,8 @@
-#TeamDyanmix Extension for Google Chrome
-##Version 0.9.0
+# TeamDyanmix Extension for Google Chrome
+## Version 0.9.0
 all features implemented for testing. Bug phase catching and design issues before official version 1 release.
 
-###Purpose:
+### Purpose:
 Automattically refreshes the user's ticket queue. Can refresh both the desktop view and global ticket views.
 * Desktop
 * Tickets
@@ -19,7 +19,7 @@ Automattically refreshes the user's ticket queue. Can refresh both the desktop v
 2. Selected tab is Ticket
 3. Detects refresh link or refresh button on page
 
-##PERMISSIONS:
+## PERMISSIONS:
 Tabs: Prompts for read browsing history. Is not utilized.
 Modify "RCGC.TEAMDYNAMIX.COM": for clicking of the button and reading the DOM.
 
