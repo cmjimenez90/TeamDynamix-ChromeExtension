@@ -17,6 +17,7 @@
       "js": ["tdtickets_cs.js"]
     }],
     "permissions":[
+        "activeTab",
         "declarativeContent",
         "alarms",
         "storage",
