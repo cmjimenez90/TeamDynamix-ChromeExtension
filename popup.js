@@ -1,24 +1,22 @@
 const ICON_OFF = 'icon/TDIcon_1919.png';
 const ICON_1MIN = 'icon/TDIcon_1min_1919.png';
 const ICON_2MIN = 'icon/TDIcon_2min_1919.png';
-const ICON_3MIN = 'icon/TDIcon_3min_1919.png';
 const ICON_5MIN = 'icon/TDIcon_5min_1919.png';
 
 function alarmModification(value){
     console.log(value);
-    var alarmName = "tdRefreshAlarm";
     console.log("Alarm Modification: clearing alarm");
-    chrome.alarms.clear(alarmName);
+    chrome.alarms.clear(ALARM_NAME);
     console.log("Alarm Modification: alarm cleared");
     if(value){
             console.log("Alarm Modification: creating alarm");
-            chrome.alarms.create(alarmName,{periodInMinutes : value});
+            chrome.alarms.create(ALARM_NAME,{periodInMinutes : value});
             console.log("Alarm Modification: alarm created");  
     }  
 };
 //Resets alarm if not available based on previous state.
 function loadConfiguration(selector){
-    chrome.storage.sync.get('selected',function(selected){
+    chrome.storage.sync.get(STORAGE_SELECTED,function(selected){
         if(selected.selected){
             console.log("Load Configuration: persistence found");
             for(var option, current = 0; option = selector.options[current]; current++) {
@@ -29,7 +27,7 @@ function loadConfiguration(selector){
                 }
             }
             console.log("Load Configuration: looking for active alarm");
-            chrome.alarms.get('tdRefreshAlarm',function (alarm) {
+            chrome.alarms.get(ALARM_NAME,function (alarm) {
                 if(!alarm){
                     console.log("Load Configuration: no alarm found, creating alarm based on persistence.");
                     alarmModification(parseInt(selected));
@@ -51,9 +49,6 @@ function setIconToCurrentState(value){
                 break;
             case 2:
                 chrome.pageAction.setIcon({tabId: tab.id,path: ICON_2MIN});
-                break;
-            case 3:
-                chrome.pageAction.setIcon({tabId: tab.id,path: ICON_3MIN});
                 break;
             case 5:
                 chrome.pageAction.setIcon({tabId: tab.id,path: ICON_5MIN});
@@ -79,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Selector Changed Event: chaning icon");
         setIconToCurrentState(parseInt(selector.value));
         console.log("Selector Changed Event: storing selector value");
-        chrome.storage.sync.set({'selected' : selector.value});
+        chrome.storage.sync.set({STORAGE_SELECTED : selector.value});
     });
   });
 

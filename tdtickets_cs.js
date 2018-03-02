@@ -1,4 +1,3 @@
-const REFRESH_ACTION = "refreshTickets";
 const IFRAME_TAG_NAME = "iframe";
 const RIGHTIFRAME_TAG_NAME = "RightFrame";
 const DESKTOP_NAV_ID = "divDesktopHdr";

@@ -1,10 +1,13 @@
 {
     "manifest_version": 2,
     "name": "TeamDynamix Ticket Refresh",
-    "version": "0.9.4",
+    "version": "0.9.5",
 
     "background": {
-        "scripts": ["background.js"],
+        "scripts": [
+            "background.js",
+            "constants.js"
+        ],
         "persistent": false
     },
 
@@ -14,8 +17,10 @@
     },
     "content_scripts": [{
       "matches": ["https://rcgc.teamdynamix.com/TDNext/Home/Desktop/Default.aspx"],
-      "js": ["tdtickets_cs.js"]
-    }],
+      "js": [
+        "tdtickets_cs.js",
+        "constants.js"
+    ]}],
     "permissions":[
         "activeTab",
         "declarativeContent",
