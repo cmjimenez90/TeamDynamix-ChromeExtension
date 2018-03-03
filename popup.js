@@ -16,7 +16,7 @@ function alarmModification(value){
 };
 //Resets alarm if not available based on previous state.
 function loadConfiguration(selector){
-    chrome.storage.sync.get(STORAGE_SELECTED,function(selected){
+    chrome.storage.sync.get('selected',function(selected){
         if(selected.selected){
             console.log("Load Configuration: persistence found");
             for(var option, current = 0; option = selector.options[current]; current++) {
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("Selector Changed Event: chaning icon");
         setIconToCurrentState(parseInt(selector.value));
         console.log("Selector Changed Event: storing selector value");
-        chrome.storage.sync.set({STORAGE_SELECTED : selector.value});
+        chrome.storage.sync.set({'selected': selector.value});
     });
   });
 
