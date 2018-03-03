@@ -4,6 +4,7 @@ const DESKTOP_NAV_ID = "divDesktopHdr";
 const REFRESH_ICON_CLASS = "fa-refresh";
 const REFRESH_BUTTON_ID = "btnRefresh";
 const ACTIVE_UI_CLASS = "ui-state-active";
+const TICKET_TAB_INNERHTML = "Tickets";
 const SELECT_CLASS = "selected";
 
 console.log("tdtickets_cs.js is running");
@@ -33,9 +34,15 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
         }      
     } 
 });
-
+//returns true only if the selected tab is one of the allowed tabs
 function shouldProcessRequest(){
-    return (document.getElementsByClassName(ACTIVE_UI_CLASS)[0].getAttribute("tabindex") == "0") ? true : false;
+    var selectedTab = document.getElementsByClassName(ACTIVE_UI_CLASS)[0].children[0].innerHTML;
+    switch(selectedTab){
+        case TICKET_TAB_INNERHTML:
+        return true;
+        default:
+        return false;
+    }
 }
 
 function getSelectedNavItem(iframe){
