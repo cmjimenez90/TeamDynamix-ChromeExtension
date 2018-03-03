@@ -16,7 +16,11 @@ chrome.alarms.onAlarm.addListener(function(alarm){
         {
           conditions: [
             new chrome.declarativeContent.PageStateMatcher({
-              pageUrl: { urlMatches: TEAMDYNAMIX_URL},
+              pageUrl: { 
+                hostContains: '.teamdynamix.com',
+                pathContains: '/TDNext/',
+                schemes: ['https']
+              },
             })
           ],
           actions: [ new chrome.declarativeContent.ShowPageAction() ]

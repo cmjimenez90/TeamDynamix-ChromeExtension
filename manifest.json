@@ -16,7 +16,7 @@
         "default_popup": "popup.html"
     },
     "content_scripts": [{
-      "matches": ["https://rcgc.teamdynamix.com/TDNext/Home/Desktop/Default.aspx"],
+      "matches": ["https://*.teamdynamix.com/TDNext/Home/Desktop/Default.aspx"],
       "js": [
         "tdtickets_cs.js",
         "constants.js"
@@ -26,6 +26,6 @@
         "declarativeContent",
         "alarms",
         "storage",
-        "https://rcgc.teamdynamix.com/*"
+        "https://*.teamdynamix.com/*"
     ]
 }
