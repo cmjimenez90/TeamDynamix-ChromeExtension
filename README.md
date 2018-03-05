@@ -1,5 +1,5 @@
 # TeamDyanmix Extension for Google Chrome
-## Version 0.9.6
+## Version 1.0.0
 All Features have been implemented for v1.0.0 release.
 Testing and code cleanup remain.
 
