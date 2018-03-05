@@ -1,5 +1,5 @@
-const IFRAME_TAG_NAME = "iframe";
-const RIGHTIFRAME_TAG_NAME = "RightFrame";
+const IFRAME_TAG_ID = "ai_119";
+const RIGHTIFRAME_TAG_ID = "RightFrame";
 const DESKTOP_NAV_ID = "divDesktopHdr";
 const REFRESH_ICON_CLASS = "fa-refresh";
 const REFRESH_BUTTON_ID = "btnRefresh";
@@ -21,8 +21,8 @@ chrome.runtime.onMessage.addListener(function(request,sender,sendResponse){
     if(request.action == REFRESH_ACTION){
         if(shouldProcessRequest()){
             console.log("valid tab selected: performing refreshTicketsAction");
-            var iframeDocument = document.getElementsByTagName(IFRAME_TAG_NAME)[0].contentWindow.document;
-            var rightIframeDocument = iframeDocument.getElementById(RIGHTIFRAME_TAG_NAME).contentWindow.document;
+            var iframeDocument = document.getElementById(IFRAME_TAG_ID).contentWindow.document;
+            var rightIframeDocument = iframeDocument.getElementById(RIGHTIFRAME_TAG_ID).contentWindow.document;
             console.log(iframeDocument);
             console.log(rightIframeDocument);
             if(getSelectedNavItem(iframeDocument) == DESKTOP_NAV_ID){
